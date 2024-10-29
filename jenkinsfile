@@ -14,7 +14,6 @@ pipeline {
             }
         }
          stage('Build') {
-         dir("./author-service")
             steps {
                 echo 'Build done'
                 bat "mvn clean install -DskipTests"
@@ -29,7 +28,7 @@ pipeline {
            stage('Deploy') {
             steps {
                 echo 'Deploy done'
-                 bat "docker build -t auth0r-service ."
+                 bat "docker build -t author-service ."
 			             bat "docker run -p 9998:9998 -d --name author-service author-service"
             }
 
