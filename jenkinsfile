@@ -1,0 +1,40 @@
+pipeline {
+    agent any
+
+    tools {
+		maven 'my-maven'
+		jdk 'my-jdk'
+	}
+
+    stages {
+        stage('Git') {
+            steps {
+                echo 'Git clone done'
+                git url:'https://github.com/Yamini6302/author-service.git', branch:'main'
+            }
+        }
+         stage('Build') {
+         dir("./author-service")
+            steps {
+                echo 'Build done'
+                bat "mvn clean install -DskipTests"
+            }
+         }
+          stage('Test') {
+            steps {
+                echo 'Test done'
+                bat "mvn test"
+            }
+          }
+           stage('Deploy') {
+            steps {
+                echo 'Deploy done'
+                 bat "docker build -t auth0r-service ."
+			             bat "docker run -p 9998:9998 -d --name author-service author-service"
+            }
+
+        }
+
+    }
+
+}
