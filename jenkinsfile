@@ -22,8 +22,8 @@ pipeline {
           
            stage('Deploy') {
             steps {
-		bat "docker rm book-container"
-		bat "docker rmi book-img"
+		bat "docker rm author-service"
+		bat "docker rmi author-service"
                 echo 'Deploy done'
                  bat "docker build -t author-service ."
 			             bat "docker run -p 9998:9998 -d --name author-service author-service"
