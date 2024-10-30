@@ -11,7 +11,7 @@
 	<groupId>com.demo</groupId>
 	<artifactId>author-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>book-service</name>
+	<name>author-service</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
